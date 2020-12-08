@@ -1,0 +1,47 @@
+Details:
+
+
+Complete the solution so that it splits the string into pairs of two characters. If the string contains an odd number of characters then it should replace the missing second character of the final pair with an underscore ('_').
+
+Examples:
+
+solution('abc') // should return ['ab', 'c_']
+solution('abcdef') // should return ['ab', 'cd', 'ef']
+
+
+
+Solution:
+
+function solution(str){
+  
+  const workingAnswer = []; // holds an array of arrays of the letters
+  const answer = []; // holds answer with the pairs concatenated
+  let workingStr = str;
+  
+  if(workingStr.length % 2 !== 0){
+     workingStr = workingStr + "_";
+   }
+ 
+  let stringArray = workingStr.split('');
+  
+  // takes a string of even length and separates into pairs
+  for(let i = stringArray.length / 2; i > 0; i--){
+    createPair();
+  }
+  
+ // concatenates the array  of string arrays
+  workingAnswer.forEach(pair => {
+    answer.push(pair[0] + pair[1]);
+  });
+  
+  
+  
+  
+  // takes pairs from the full list of strings
+  function createPair(){
+    workingAnswer.push(stringArray.splice(0,2));
+  }
+  
+  return answer;
+  
+}
